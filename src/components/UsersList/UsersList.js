@@ -3,12 +3,13 @@ import Card from '../Card/Card'
 
 
 function UsersList(props) {
+  console.log(props);
   return (
     <section className="section2">
       <ul>
-        <Card name='Donny' age={24} ></Card>
-        <Card name='Tasya' age={22} ></Card>
-        <Card name='Bryna' age={23} ></Card>
+        {props.datas.map(item => (
+          <Card name={item.name} age={item.age} key={item.id} id={item.id} onDelete={props.onDeleteItem}></Card>
+        ))}
       </ul>
     </section>
   )

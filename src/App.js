@@ -4,20 +4,33 @@ import UsersList from './components/UsersList/UsersList';
 import ErrorModal from './components/ErrorModal/ErrorModal'
 
 function App() {
-  const [userInput, setUserInput] = useState()
+  const [userInput, setUserInput] = useState([])
   const [errorModal, setErrorModal] = useState(null)
 
   const submitFunction = theUserInput => {
-    if (theUserInput.name.length === 0) {
+    if (theUserInput.name.length === 0 || theUserInput.age.length === 0) {
       setErrorModal('form empty');
       return;
     }
-    if (theUserInput.age.length === 0) {
-      setErrorModal('age empty');
+    if (+theUserInput.age < 1) {
+      setErrorModal('age < 0');
       return;
     }
-    setUserInput(theUserInput);
+    setUserInput(prevInputs => {
+      const updatedInputs = [...prevInputs];
+      const inputLength = updatedInputs.length
+      const updatedSingleInput = {
+        ...theUserInput,
+        id: inputLength + 1
+      }
+      updatedInputs.push(updatedSingleInput)
+
+      return updatedInputs;
+    }
+    );
   }
+
+  console.log(userInput);
 
   const closeModalHandler = () => {
     setErrorModal(false)
@@ -26,31 +39,30 @@ function App() {
   let theErrorModal = null;
 
   if (errorModal) {
-    if (errorModal === 'name empty') {
+    if (errorModal === 'form empty') {
       theErrorModal = <ErrorModal content='Please enter a valid name and age (non-empty values).' closeModal={closeModalHandler}></ErrorModal>
     }
-    else if (errorModal === 'age empty') {
-      theErrorModal = <ErrorModal content='Age is empty' closeModal={closeModalHandler}></ErrorModal>
+    else if (errorModal === 'age < 0') {
+      theErrorModal = <ErrorModal content='Age should be greater than 0' closeModal={closeModalHandler}></ErrorModal>
     }
   }
 
-  // if (userInput?.name.length === 0) {
-  //   theErrorModal = <ErrorModal content='Name is empty' closeModal={closeModalHandler}></ErrorModal>
-  // }
-  // else if (userInput?.age.length === 0) {
-  //   theErrorModal = <ErrorModal content='Age is empty' closeModal={closeModalHandler}></ErrorModal>
-  // }
-
-  console.log(userInput);
+  const deleteItemHandler = itemID => {
+    // console.log(itemID);
+    setUserInput( prevInputs => {
+      const updatedInputs = prevInputs.filter( input => input.id !== itemID )
+      return updatedInputs;
+    } )
+  }
 
   return (
     <main>
       <AddUser onFormSubmit={submitFunction} />
 
-      {userInput && <UsersList />}
+      {/* {Object.keys(userInput).length > 0 && <UsersList datas={userInput} />} */}
+      {userInput.length > 0 ? <UsersList datas={userInput} onDeleteItem={deleteItemHandler}/> : <p>List of name is empty.</p>}
 
       {theErrorModal}
-      {/* {errorModal && <ErrorModal content='Name is empty' closeModal={closeModalHandler}></ErrorModal>} */}
 
     </main>
   )
