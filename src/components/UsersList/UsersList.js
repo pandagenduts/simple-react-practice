@@ -2,7 +2,7 @@ import React from 'react'
 import Card from '../Card/Card'
 
 
-function UsersList() {
+function UsersList(props) {
   return (
     <section className="section2">
       <ul>

@@ -45,7 +45,8 @@ section {
 }
 
 .input-wrapper input {
-  height: 2em;
+  min-height: 2em;
+  padding: 0.5em;
 }
 
 form button,
