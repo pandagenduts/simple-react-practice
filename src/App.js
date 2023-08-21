@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import AddUser from './components/AddUser/AddUser';
 import UsersList from './components/UsersList/UsersList';
 import ErrorModal from './components/ErrorModal/ErrorModal'
+import OnEmpty from './components/OnEmpty/OnEmpty';
 
 function App() {
   const [userInput, setUserInput] = useState([])
@@ -48,7 +49,6 @@ function App() {
   }
 
   const deleteItemHandler = itemID => {
-    // console.log(itemID);
     setUserInput( prevInputs => {
       const updatedInputs = prevInputs.filter( input => input.id !== itemID )
       return updatedInputs;
@@ -60,7 +60,7 @@ function App() {
       <AddUser onFormSubmit={submitFunction} />
 
       {/* {Object.keys(userInput).length > 0 && <UsersList datas={userInput} />} */}
-      {userInput.length > 0 ? <UsersList datas={userInput} onDeleteItem={deleteItemHandler}/> : <p>List of name is empty.</p>}
+      {userInput.length > 0 ? <UsersList datas={userInput} onDeleteItem={deleteItemHandler}/> : <OnEmpty />}
 
       {theErrorModal}
 
