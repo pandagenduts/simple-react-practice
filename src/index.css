@@ -48,13 +48,15 @@ section {
   height: 2em;
 }
 
-form button {
+form button,
+.error-modal button {
   background-color: darkblue;
   color: white;
   padding: 4px 8px;
   border-radius: 4px;
   font-weight: 500;
   margin-top: 2em;
+  cursor: pointer;
 }
 
 ul {
@@ -67,4 +69,47 @@ ul {
 li {
   outline: 1px solid rgb(180, 180, 180);
   padding: 0.4em;
+}
+
+.error-overlay {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: rgba(17, 17, 17, 0.829);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.error-modal {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.error-modal .head {
+  padding: 1em;
+  background-color: darkblue;
+  color: white;
+}
+
+.error-modal h5 {
+  font-size: 1.2em;
+}
+
+.error-modal .content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3em;
+
+  padding: 1em;
+  background-color: white;
+}
+
+.error-modal .content span{
+  display: block;
+  width: 100%;
 }
