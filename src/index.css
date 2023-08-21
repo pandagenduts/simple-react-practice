@@ -1,5 +1,7 @@
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
@@ -8,4 +10,61 @@ html {
 
 body {
   margin: 0;
+  background-color: darkcyan;
+}
+
+main {
+  padding: 20px;
+}
+
+section {
+  max-width: 1000px;
+  width: 100%;
+  background-color: #f3f3f3;
+  border-radius: 8px;
+  padding: 1.5em;
+}
+
+.section1 {
+  margin-bottom: 3em;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-wrapper:first-child {
+  margin-bottom: 1em;
+}
+
+.input-wrapper label {
+  font-size: 1.2em;
+  font-weight: 600;
+  margin-bottom: 0.5em;
+}
+
+.input-wrapper input {
+  height: 2em;
+}
+
+form button {
+  background-color: darkblue;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+  margin-top: 2em;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+li {
+  outline: 1px solid rgb(180, 180, 180);
+  padding: 0.4em;
 }

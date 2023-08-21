@@ -1,12 +1,17 @@
 import React from 'react';
+import AddUser from './components/AddUser/AddUser';
+import UsersList from './components/UsersList/UsersList';
 
 
 function App() {
+
+
   return (
-    <div>
+    <main>
+      <AddUser />
 
-    </div>
-  );
+      <UsersList />
+    </main>
+  )
 }
-
 export default App;
