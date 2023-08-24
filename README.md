@@ -1,3 +1,5 @@
+deployed project: simple-react-practice.netlify.app
+
 how to run this project
 
 npm start
